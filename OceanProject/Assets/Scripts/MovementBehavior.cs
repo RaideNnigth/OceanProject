@@ -25,6 +25,8 @@ public class MovementBehavior : MonoBehaviour
     private int extraJumps;
     public int extraJumpsValue;
 
+    public GameObject head;
+
 
 
     void Start()
@@ -35,22 +37,23 @@ public class MovementBehavior : MonoBehaviour
    
     void Update()
     {
+        //Movement For Water
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = moveInput * Waterspeed;
 
-        CheckStatus();
-
+        //Check if on platform
         if (isGrounded == true)
         {
             extraJumps = extraJumpsValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
+        //Jump Script (maybe double jump)
+        if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0 || Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
-        else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGrounded == true)
+        else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGrounded == true || Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
         {
             rb.velocity = Vector2.up * jumpForce;
         }
@@ -60,15 +63,14 @@ public class MovementBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-       
-
+        //Check if inside water or outside
         if (InWater)
         {
-            rb.gravityScale = 0;
+            rb.gravityScale = 1.5f;
             rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         } else
         {
-            rb.gravityScale = 1f;
+            rb.gravityScale = 2f;
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
 
@@ -78,7 +80,7 @@ public class MovementBehavior : MonoBehaviour
         }
 
         
-
+        //flip sprite when going left or right
         if (facingRight == false && moveInput > 0)
         {
             Flip();
@@ -90,16 +92,7 @@ public class MovementBehavior : MonoBehaviour
 
     }
 
-    public void CheckStatus()
-    {
-        if (transform.position.y < 0)
-        {
-            InWater = true;
-        } else
-        {
-            InWater = false;
-        }
-    }
+   
 
     void Flip()
     {
@@ -107,6 +100,26 @@ public class MovementBehavior : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //detect if player entered body of water
+        if (collision.CompareTag("Water"))
+        {
+            InWater = true;
+            
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        //detect if player exited body of water
+        if (collision.CompareTag("Water"))
+        {
+            InWater = false;
+            
+        }
     }
 }
 
