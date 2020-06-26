@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementBehavior : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class MovementBehavior : MonoBehaviour
 
     [Header("Other")]
     bool Ploof = false;
+    public Text DepthM;
   
 
     void Start()
@@ -41,19 +43,9 @@ public class MovementBehavior : MonoBehaviour
         checkState();
         JumpSystem();
 
-        if (Ploof)
-        {
+        Decceleration();
+        DepthMeter();
 
-            rb.gravityScale = rb.gravityScale - 0.03f;
-
-            if (rb.gravityScale <= 0)
-            {
-                rb.gravityScale = 0;
-                Ploof = false;
-            }
-            
-        }
-        
     }
 
     void FixedUpdate()
@@ -86,7 +78,6 @@ public class MovementBehavior : MonoBehaviour
     void WaterMovement()
     {
         //Movement For Water
-        //rb.gravityScale = 0f;
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = moveInput * Waterspeed;
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
@@ -147,5 +138,34 @@ public class MovementBehavior : MonoBehaviour
             InWater = false;
             print("Out");
         }
+    }
+
+    void Decceleration()
+    {
+        if (Ploof)
+        {
+
+            rb.gravityScale = rb.gravityScale - 0.045f;
+
+            if (rb.gravityScale <= 0)
+            {
+                rb.gravityScale = 0;
+                Ploof = false;
+            }
+
+        }
+    }
+
+    void DepthMeter()
+    {
+        if (transform.position.y > 0)
+        {
+            DepthM.text = "Depth: 0m";
+        } else
+        {
+            float depth = Mathf.Abs(transform.position.y * 2);
+            DepthM.text = "Depth: " + depth.ToString("0") + "m";
+        }
+
     }
 }
