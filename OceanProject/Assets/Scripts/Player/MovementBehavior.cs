@@ -27,6 +27,10 @@ public class MovementBehavior : MonoBehaviour
     private int extraJumps;
     private int extraJumpsValue;
 
+    [Header("Other")]
+    bool Ploof = false;
+    float timer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +40,20 @@ public class MovementBehavior : MonoBehaviour
     {
         checkState();
         JumpSystem();
+
+        if (Ploof)
+        {
+
+            rb.gravityScale = rb.gravityScale - 0.03f;
+
+            if (rb.gravityScale <= 0)
+            {
+                rb.gravityScale = 0;
+                Ploof = false;
+            }
+            
+        }
+        
     }
 
     void FixedUpdate()
@@ -68,7 +86,7 @@ public class MovementBehavior : MonoBehaviour
     void WaterMovement()
     {
         //Movement For Water
-        rb.gravityScale = 1.5f;
+        //rb.gravityScale = 0f;
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = moveInput * Waterspeed;
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
@@ -115,6 +133,10 @@ public class MovementBehavior : MonoBehaviour
         if (collision.CompareTag("Water"))
         {
             InWater = true;
+            //rb.AddForce(transform.up * -1 * (rb.velocity.magnitude * 200), ForceMode2D.Force);
+            rb.gravityScale = rb.velocity.magnitude * 2;
+            Ploof = true;
+            print("InWater");
         }
     }
 
