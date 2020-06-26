@@ -12,7 +12,7 @@ public class OxygenLogic : MonoBehaviour
 
     public Slider OxygenSlider;
 
-    bool HeadinWater = false;
+    public static bool HeadinWater = false;
     void Start()
     {
         //Resets your Oxygen
