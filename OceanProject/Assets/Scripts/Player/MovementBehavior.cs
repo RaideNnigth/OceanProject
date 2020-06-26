@@ -31,7 +31,10 @@ public class MovementBehavior : MonoBehaviour
     [Header("Other")]
     bool Ploof = false;
     public Text DepthM;
-  
+    public Darkness Dark;
+    float depth;
+
+
 
     void Start()
     {
@@ -158,12 +161,14 @@ public class MovementBehavior : MonoBehaviour
 
     void DepthMeter()
     {
+        Dark.DepthCounter(depth);
+
         if (transform.position.y > 0)
         {
             DepthM.text = "Depth: 0m";
         } else
         {
-            float depth = Mathf.Abs(transform.position.y * 2);
+            depth = Mathf.Abs(transform.position.y * 2);
             DepthM.text = "Depth: " + depth.ToString("0") + "m";
         }
 
