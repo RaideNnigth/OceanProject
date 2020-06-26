@@ -29,7 +29,7 @@ public class MovementBehavior : MonoBehaviour
 
     [Header("Other")]
     bool Ploof = false;
-    float timer;
+  
 
     void Start()
     {
@@ -130,22 +130,22 @@ public class MovementBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         //detect if player entered body of water
-        if (collision.CompareTag("Water"))
+        if (collision.CompareTag("Water") && !InWater)
         {
             InWater = true;
-            //rb.AddForce(transform.up * -1 * (rb.velocity.magnitude * 200), ForceMode2D.Force);
             rb.gravityScale = rb.velocity.magnitude * 2;
             Ploof = true;
-            print("InWater");
+            print("In");
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         //detect if player exited body of water
-        if (collision.CompareTag("Water"))
+        if (collision.CompareTag("Water") && InWater)
         {
             InWater = false;
+            print("Out");
         }
     }
 }
