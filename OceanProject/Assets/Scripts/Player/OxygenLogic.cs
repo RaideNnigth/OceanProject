@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OxygenLogic : MonoBehaviour
 {
-    float MaxOxygen = 30f;
+    float MaxOxygen = 25f;
     
     [SerializeField]
     float Oxygen;
