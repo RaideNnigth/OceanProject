@@ -175,4 +175,5 @@ public class MovementBehavior : MonoBehaviour
         yield return new WaitForSeconds(DashDelay);
         canDash = true;
     }
+    
 }
