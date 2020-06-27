@@ -406,7 +406,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &497339709
 BoxCollider2D:
@@ -453,7 +453,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   Waterspeed: 20
-  DashMultipler: 2
+  DashMultipler: 5
   DashDelay: 0.5
   Landspeed: 5
   jumpForce: 7
@@ -693,8 +693,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657237404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.354, y: -60.2, z: 0}
-  m_LocalScale: {x: 19.056942, y: 121.55785, z: 1}
+  m_LocalPosition: {x: -11.354, y: -60.1821, z: 0}
+  m_LocalScale: {x: 19.056942, y: 121.593575, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1

@@ -84,16 +84,7 @@ public class MovementBehavior : MonoBehaviour
             Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             moveVelocity = moveInput * Waterspeed * Time.deltaTime * 20;
 
-            if (Input.GetKeyDown(KeyCode.Space) && canDash)
-            {
-                moveVelocity *= DashMultipler;
-                rb.velocity = moveVelocity;
-                StartCoroutine(waitToDash());
-            }
-            else
-            {
-                rb.velocity = moveVelocity;
-            }
+            rb.velocity = moveVelocity;
         }
         else
         {
@@ -139,7 +130,7 @@ public class MovementBehavior : MonoBehaviour
     {
         if (Ploof)
         {
-            rb.gravityScale = rb.gravityScale - 0.045f;
+            rb.gravityScale = rb.gravityScale - 0.05f;
 
             if (rb.gravityScale <= 0)
             {
