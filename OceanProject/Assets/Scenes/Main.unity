@@ -806,7 +806,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 2
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 497339707}
-  speed: 200
+  speed: 100
   nextWaypointDistance: 3
   enemyGFX: {fileID: 1032040133}
 --- !u!114 &1032040132

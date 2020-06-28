@@ -75,6 +75,9 @@ public class EnemyAI : MonoBehaviour
             currentWaypoint++;
         }
 
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.y));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
         //RotatePlayer
         if (rb.velocity.x >= 0.01f)
         {
