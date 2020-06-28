@@ -722,13 +722,8 @@ MonoBehaviour:
   groundCheck: {fileID: 821710269}
   whatIsGround:
     serializedVersion: 2
-<<<<<<< HEAD
-    m_Bits: 272
-  Waterspeed: 45
-=======
     m_Bits: 256
   Waterspeed: 10
->>>>>>> f6c54a0430732e6093149d5c2c492e4dbf8736b5
   Landspeed: 5
   jumpForce: 9
 --- !u!61 &497339711
@@ -921,11 +916,7 @@ GameObject:
   - component: {fileID: 655312249}
   - component: {fileID: 655312248}
   - component: {fileID: 655312250}
-<<<<<<< HEAD
   m_Layer: 4
-=======
-  m_Layer: 0
->>>>>>> f6c54a0430732e6093149d5c2c492e4dbf8736b5
   m_Name: Water
   m_TagString: Water
   m_Icon: {fileID: 0}
