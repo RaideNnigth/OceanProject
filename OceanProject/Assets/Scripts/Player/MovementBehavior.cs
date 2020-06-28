@@ -17,10 +17,7 @@ public class MovementBehavior : MonoBehaviour
 
     [Header("Water Movement")]
     public float Waterspeed;
-    public float DashMultipler;
-    public float DashDelay;
     private bool InWater = false;
-    private bool canDash = true;
 
     [Header("Air Movement")]
     public float Landspeed;
@@ -159,12 +156,4 @@ public class MovementBehavior : MonoBehaviour
             InWater = false;
         }
     }
-
-    IEnumerator waitToDash()
-    {
-        canDash = false;
-        yield return new WaitForSeconds(DashDelay);
-        canDash = true;
-    }
-    
 }
