@@ -79,13 +79,15 @@ public class MovementBehavior : MonoBehaviour
         if (HeadinWater)
         {
             Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            moveVelocity = moveInput * Waterspeed * Time.deltaTime * 20;
+            moveVelocity = moveInput * Waterspeed * Time.deltaTime * 60;
 
             rb.velocity = moveVelocity;
         }
         else
         {
-            //IMPLEMENT HERE THE HALF BODY CODE 
+            //IMPLEMENT HERE THE HALF BODY CODE
+            moveInput = Input.GetAxis("Horizontal") * Time.deltaTime * 60;
+            rb.velocity = (new Vector2(moveInput * Waterspeed, -1));
         }
     }
     void LandMovement()
