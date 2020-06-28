@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
 
     public float speed = 200f;
+    public float turnSpeed;
     public float nextWaypointDistance = 3f;
 
     public Transform enemyGFX;
@@ -47,8 +48,7 @@ public class EnemyAI : MonoBehaviour
             currentWaypoint = 0;
         }
     }
-    
-    void FixedUpdate()
+    void Update()
     {
         if (path == null)
             return;
@@ -57,7 +57,8 @@ public class EnemyAI : MonoBehaviour
         {
             reachedEndOfPath = true;
             return;
-        } else
+        }
+        else
         {
             reachedEndOfPath = false;
         }
@@ -65,7 +66,7 @@ public class EnemyAI : MonoBehaviour
         //Calculate the Vector from enemy to player (scale 1)
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
-        
+
         rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -75,17 +76,7 @@ public class EnemyAI : MonoBehaviour
             currentWaypoint++;
         }
 
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.y));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
-        //RotatePlayer
-        if (rb.velocity.x >= 0.01f)
-        {
-            enemyGFX.localScale = new Vector3(-3.271989f, 0.8132614f, 0.8132614f);
-        }
-        else if (rb.velocity.x <= 0.01f)
-        {
-            enemyGFX.localScale = new Vector3(3.271989f, 0.8132614f, 0.8132614f);
-        }
+        float TargetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, TargetAngle), turnSpeed * Time.deltaTime);
     }
 }
