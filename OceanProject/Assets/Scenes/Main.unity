@@ -722,7 +722,7 @@ MonoBehaviour:
   groundCheck: {fileID: 821710269}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 272
   Waterspeed: 10
   Landspeed: 5
   jumpForce: 9
@@ -772,7 +772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &636516501
 Transform:
   m_ObjectHideFlags: 0
